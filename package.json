@@ -14,7 +14,8 @@
   "author": "PW",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "googleapis": "^49.0.0"
   },
   "engines": {
     "node": "12.16.2"
