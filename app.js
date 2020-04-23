@@ -36,6 +36,8 @@ app.get('/', (req, res) => {
         console.log(url)
         res.redirect(url);
     } else {
+        
+        /*
         const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
         oauth2.userinvo.v2.me.get(function(err,result){
             if(err){
