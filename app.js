@@ -12,7 +12,7 @@ const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
 var authed = false;
 
-app.get('/', (req, res) => {/*
+app.get('/', (req, res) => {
     if (!authed) {
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {/*
         });
         res.send('Logged in')
     }
-*/})
+})
 
 app.get('/auth/google/callback', function (req, res) {
     const code = req.query.code
