@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
             access_type: 'offline',
             scope: 'https://www.googleapis.com/auth/userinfo.profile'
         });
+        res.send(url);
         /*
         console.log(url)
         res.redirect(url);
