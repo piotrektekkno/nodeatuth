@@ -21,11 +21,11 @@ app.get('/', (req, res) => {
             scope: 'https://www.googleapis.com/auth/userinfo.profile'
         });
         res.send(url);
-        /*
+        
         console.log(url)
         res.redirect(url);
-        */
-       res.send('Logged out');
+    
+       //res.send('Logged out');
     } else {/*
         const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
         gmail.users.labels.list({
@@ -42,11 +42,11 @@ app.get('/', (req, res) => {
                 console.log('No labels found.');
             }
         });
-        */ /*
+        */ 
        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
-       oauth2.userinvo.v2.me.get(function(err,result){
+       oauth2.userinfo.v2.me.get(function(err, result){
            if(err){
-               consolele.log('Błąd');
+               console.log('Błąd');
                console.log(err);
            } else {
                loggedUser = result.data.name;
@@ -57,8 +57,8 @@ app.get('/', (req, res) => {
                '"height="23" width="23">')) 
            
        });
-       */
-      res.send('Logged in');
+       
+      //res.send('Logged in');
     }
 })
 
