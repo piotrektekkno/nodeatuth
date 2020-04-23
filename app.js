@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
         });
         console.log(url)
         res.redirect(url);
-    } else {
+    } else {/*
         const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
         gmail.users.labels.list({
             userId: 'me',
@@ -37,7 +37,21 @@ app.get('/', (req, res) => {
                 console.log('No labels found.');
             }
         });
-        res.send('Logged in')
+        */
+       const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
+       oauth2.userinvo.v2.me.get(function(err,result){
+           if(err){
+               consolele.log('Błąd');
+               console.log(err);
+           } else {
+               loggedUser = result.data.name;
+               console.log(err);
+           }
+           res.send('Logged in: '.
+               concat(loggedUser, ' <img src="', result.data.picture,
+               '"height="23" width="23">')) 
+           
+       });
     }
 })
 
