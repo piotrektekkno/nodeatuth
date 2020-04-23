@@ -1,23 +1,9 @@
-/*
-var express = require('express');
-var app = express();
-app.get('/', function (req, res) {
-
-  res.send('Auth on Heroku platform :)');
-
-
-});
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
-
-*/
-
 const { google } = require('googleapis');
 const express = require('express')
 const OAuth2Data = require('./gkeys.json')
 
 const app = express()
+
 
 const CLIENT_ID = OAuth2Data.web.client_id; 
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
@@ -28,33 +14,15 @@ var authed = false;
 
 app.get('/', (req, res) => {
     if (!authed) {
-        /*
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
-            scope: 'https://www.googleapis.com/auth/userinfo.profile'
+            scope: 'https://www.googleapis.com/auth/gmail.readonly'
         });
         console.log(url)
         res.redirect(url);
-        *
     } else {
-
-        /*
-        const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
-        oauth2.userinvo.v2.me.get(function(err,result){
-            if(err){
-                consolele.log('Błąd');
-                console.log(err);
-            } else {
-                loggedUser = result.data.name;
-                console.log(err);
-            }
-            res.send('Logged in: '.
-                concat(loggedUser, ' <img src="', result.data.picture,
-                '"height="23" width="23">')) 
-            
-        });
-        /*
+        const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
         gmail.users.labels.list({
             userId: 'me',
         }, (err, res) => {
@@ -70,12 +38,10 @@ app.get('/', (req, res) => {
             }
         });
         res.send('Logged in')
-        */
     }
-});
+})
 
 app.get('/auth/google/callback', function (req, res) {
-    /*
     const code = req.query.code
     if (code) {
         // Get an access token based on our OAuth code
@@ -91,8 +57,7 @@ app.get('/auth/google/callback', function (req, res) {
             }
         });
     }
-    */
 });
 
-const port = process.env.PORT || 5000
+const port = process.env.port || 5000
 app.listen(port, () => console.log(`Server running at ${port}`));
