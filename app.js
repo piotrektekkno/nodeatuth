@@ -28,6 +28,7 @@ var authed = false;
 
 app.get('/', (req, res) => {
     if (!authed) {
+        /*
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
@@ -35,8 +36,9 @@ app.get('/', (req, res) => {
         });
         console.log(url)
         res.redirect(url);
+        *
     } else {
-        
+
         /*
         const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
         oauth2.userinvo.v2.me.get(function(err,result){
@@ -73,6 +75,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/auth/google/callback', function (req, res) {
+    /*
     const code = req.query.code
     if (code) {
         // Get an access token based on our OAuth code
@@ -88,6 +91,7 @@ app.get('/auth/google/callback', function (req, res) {
             }
         });
     }
+    */
 });
 
 const port = process.env.PORT || 5000
