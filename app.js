@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
                 console.log('No labels found.');
             }
         });
-        */
+        */ /*
        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinvo.v2.me.get(function(err,result){
            if(err){
@@ -52,6 +52,7 @@ app.get('/', (req, res) => {
                '"height="23" width="23">')) 
            
        });
+       */
     }
 })
 
