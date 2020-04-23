@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-           res.send('Logged in: '.
+           res.send('Logged in: <BR> '.
                concat(loggedUser, ' <img src="', result.data.picture,
                '"height="23" width="23">')) 
            
