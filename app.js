@@ -14,6 +14,7 @@ var authed = false;
 
 app.get('/', (req, res) => {
     if (!authed) {
+        /*
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
@@ -21,6 +22,8 @@ app.get('/', (req, res) => {
         });
         console.log(url)
         res.redirect(url);
+        */
+       res.send('Logged out');
     } else {/*
         const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
         gmail.users.labels.list({
@@ -53,6 +56,7 @@ app.get('/', (req, res) => {
            
        });
        */
+      res.send('Logged in');
     }
 })
 
