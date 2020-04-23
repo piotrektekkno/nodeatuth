@@ -1,9 +1,9 @@
-/*
 const { google } = require('googleapis');
 const express = require('express')
 const OAuth2Data = require('./gkeys.json')
 
 const app = express()
+
 
 const CLIENT_ID = OAuth2Data.web.client_id; 
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
@@ -61,25 +61,3 @@ app.get('/auth/google/callback', function (req, res) {
 
 const port = process.env.port || 5000
 app.listen(port, () => console.log(`Server running at ${port}`));
-*/
-
-var express = require('express');
-var app = express();
-app.get('/', function (req, res) {
-  var strP = '<br>';
-  var tmpStr =''
-  var q = req.query;
-  for (var a in q){
-    tmpStr = 'Parametr w url: ' + a + ' wartość: ' + q[a];
-    console.log(tmpStr);
-    strP += '<br>' + tmpStr
-  }
-  res.send('Hello World! on Heroku platform :) ' +
-  '<br>Deploy from Github details: <b>piotrektekkno/herokuNodeJS </b>' +
-  strP);
-
-
-});
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
