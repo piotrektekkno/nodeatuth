@@ -31,12 +31,12 @@ app.get('/', (req, res) => {
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
-            scope: 'https://www.googleapis.com/auth/gmail.readonly'
+            scope: 'https://www.googleapis.com/auth/userinfo.profile'
         });
         console.log(url)
         res.redirect(url);
     } else {
-        const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
+        const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
         gmail.users.labels.list({
             userId: 'me',
         }, (err, res) => {
