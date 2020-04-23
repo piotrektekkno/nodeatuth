@@ -14,12 +14,13 @@ var authed = false;
 
 app.get('/', (req, res) => {
     if (!authed) {
-        /*
+        
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
             scope: 'https://www.googleapis.com/auth/userinfo.profile'
         });
+        /*
         console.log(url)
         res.redirect(url);
         */
