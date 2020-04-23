@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
         // Generate an OAuth URL and redirect there
         const url = oAuth2Client.generateAuthUrl({
             access_type: 'offline',
-            scope: 'https://www.googleapis.com/auth/gmail.readonly'
+            scope: 'https://www.googleapis.com/auth/userinfo.profile'
         });
         console.log(url)
         res.redirect(url);
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
             }
         });
         */
-       const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
+       const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinvo.v2.me.get(function(err,result){
            if(err){
                consolele.log('Błąd');
