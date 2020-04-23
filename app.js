@@ -37,6 +37,20 @@ app.get('/', (req, res) => {
         res.redirect(url);
     } else {
         const oauth2 = google.oauth2({ version: 'v2', auth: oAuth2Client });
+        oauth2.userinvo.v2.me.get(function(err,result){
+            if(err){
+                consolele.log('Błąd');
+                console.log(err);
+            } else {
+                loggedUser = result.data.name;
+                console.log(err);
+            }
+            res.send('Logged in: '.
+                concat(loggedUser, ' <img src="', result.data.picture,
+                '"height="23" width="23">')) 
+            
+        });
+        /*
         gmail.users.labels.list({
             userId: 'me',
         }, (err, res) => {
@@ -52,8 +66,9 @@ app.get('/', (req, res) => {
             }
         });
         res.send('Logged in')
+        */
     }
-})
+});
 
 app.get('/auth/google/callback', function (req, res) {
     const code = req.query.code
