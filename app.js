@@ -71,8 +71,14 @@ app.get('/auth/google/callback', function (req, res) {
 
 app.get('/logout',  function (req, res) {
     res.send(
+        '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
         '<script> ' +
-        '    alert("ok"); ' +
+            'var auth2 = gapi.auth2.getAuthInstance(); ' +
+            'auth2.signOut().then(function () { ' +
+            'console.log("User signed out."); ' +
+            '});' +
+              
+            'alert("ok"); ' +
         '</script> '
     );
     /*
