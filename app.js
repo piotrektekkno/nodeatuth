@@ -92,8 +92,8 @@ app.get('/logout',  function (req, res) {
     oAuth2Client.disconnect();
     */
     //
-    oauth2.signOut();
-    res.redirect('/');
+    //oauth2.signOut();
+    //res.redirect('/');
 });
 
 const port = process.env.PORT || 5000
