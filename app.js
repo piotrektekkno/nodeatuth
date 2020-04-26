@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
         });
         //res.send(url);
         
-        console.log(url)
+        console.log(url);
         res.redirect(url);
     
        //res.send('Logged out');
@@ -52,10 +52,14 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
+
            res.send('Logged in: <BR> '.
-               concat(loggedUser, ' <img src="', result.data.picture,
-               '"height="23" width="23">')) 
-           
+                    concat(loggedUser, ' <img src="', 
+                           result.data.picture,
+                           '"height="23" width="23">'));
+            
+            res.send('<button type="button">Wyloguj</button>'); 
+            
        });
        
       //res.send('Logged in');
