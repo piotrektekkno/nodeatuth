@@ -58,11 +58,9 @@ app.get('/', (req, res) => {
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
+                           '<br>' +
                            '<button type="button">Wyloguj</button>'));
-            
-            
-
-       });
+    });
        
       //res.send('Logged in');
     }
@@ -84,6 +82,13 @@ app.get('/auth/google/callback', function (req, res) {
             }
         });
     }
+});
+
+app.get('/logout',  function (req, res) {
+    oAuth2Client.signOut().then(function () {
+    });
+    oAuth2Client.disconnect();
+    res.redirect('/');
 });
 
 const port = process.env.PORT || 5000
