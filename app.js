@@ -72,7 +72,7 @@ app.get('/auth/google/callback', function (req, res) {
 app.get('/logout',  function (req, res) {
     res.send(
         '<script> ' +
-        '    alert('ok'); ' +
+        '    alert("ok"); ' +
         '</script> '
     );
     /*
