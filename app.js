@@ -85,9 +85,11 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
+    /*
     oAuth2Client.signOut().then(function () {
     });
     oAuth2Client.disconnect();
+    */
     res.redirect('/');
 });
 
