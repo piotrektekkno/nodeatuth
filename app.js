@@ -36,9 +36,20 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-           res.set('title', 'Auth App');
-           //res.send('<button type="button">Wyloguj</button>'); 
-           res.send('Logged in: <BR> '.
+         
+           
+           res.send(
+                    '<script src="https://apis.google.com/js/platform.js?onload=fStart" async defer></script>' +
+                    '<script> ' +
+                        'function fStart(){ ' +
+                        'var auth2 = gapi.auth2.getAuthInstance(); ' +
+                        'auth2.signOut().then(function () { ' +
+                        'console.log("User signed out."); ' +
+                        '});' +
+                        'alert("ok"); ' +
+                        '}' +
+                    '</script> ' +
+                    'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
@@ -71,6 +82,7 @@ app.get('/auth/google/callback', function (req, res) {
 app.get('/logout',  function (req, res) {
     
     res.send(
+        res.header("Content-Type", "application/json; charset=utf-8");
         '<script src="https://apis.google.com/js/platform.js?onload=fStart" async defer></script>' +
         '<script> ' +
             'function fStart(){ ' +
