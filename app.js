@@ -81,7 +81,7 @@ app.get('/logout',  function (req, res) {
             '});' +
             */
             'alert("ok"); ' +
-            '}'
+            '}' +
         '</script> '
     );
     
