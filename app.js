@@ -39,8 +39,9 @@ app.get('/', (req, res) => {
          
            
            res.send(
-                    '<script src="https://apis.google.com/js/platform.js?onload=fStart" async defer></script>' +
+                    '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
                     '<script> ' +
+                        'function init(){alert("ok")}'
                         'function fStart(){ ' +
                         'var auth2 = gapi.auth2.getAuthInstance(); ' +
                         'auth2.signOut().then(function () { ' +
@@ -54,7 +55,7 @@ app.get('/', (req, res) => {
                            result.data.picture,
                            '"height="23" width="23">',
                            '<br>' +
-                           '<button type="button">Wyloguj</button>'));
+                           '<button type="button onClick="fStart()">Wyloguj</button>'));
     });
        
       //res.send('Logged in');
