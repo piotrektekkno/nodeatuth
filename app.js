@@ -53,13 +53,14 @@ app.get('/', (req, res) => {
                console.log(err);
            }
 
+           res.send('<button type="button">Wyloguj</button>'); 
            res.send('Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">'));
             
-            res.send('<button type="button">Wyloguj</button>'); 
             
+
        });
        
       //res.send('Logged in');
