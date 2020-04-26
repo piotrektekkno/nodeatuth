@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-           var oauth2Inst = oauth2.getAuthInstance();
+           //var oauth2Inst = oauth2.getAuthInstance();
            
            res.send(
                     '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
