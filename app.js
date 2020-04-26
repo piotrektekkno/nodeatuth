@@ -11,7 +11,6 @@ const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
 var authed = false;
-const oauth2;
 
 app.get('/', (req, res) => {
     if (!authed) {
@@ -29,7 +28,7 @@ app.get('/', (req, res) => {
        //res.send('Logged out');
     } else {
        
-       oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
+       const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinfo.v2.me.get(function(err, result){
            if(err){
                console.log('Błąd');
@@ -89,8 +88,8 @@ app.get('/logout',  function (req, res) {
     oAuth2Client.disconnect();
     */
     //
-    oauth2.signOut();
-    res.redirect('/');
+    //oauth2.signOut();
+    //res.redirect('/');
 });
 
 const port = process.env.PORT || 5000
