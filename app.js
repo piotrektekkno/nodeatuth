@@ -26,23 +26,8 @@ app.get('/', (req, res) => {
         res.redirect(url);
     
        //res.send('Logged out');
-    } else {/*
-        const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
-        gmail.users.labels.list({
-            userId: 'me',
-        }, (err, res) => {
-            if (err) return console.log('The API returned an error: ' + err);
-            const labels = res.data.labels;
-            if (labels.length) {
-                console.log('Labels:');
-                labels.forEach((label) => {
-                    console.log(`- ${label.name}`);
-                });
-            } else {
-                console.log('No labels found.');
-            }
-        });
-        */ 
+    } else {
+       
        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinfo.v2.me.get(function(err, result){
            if(err){
@@ -85,12 +70,17 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
+    res.send(
+        '<script> ' +
+        '    alert('ok'); ' +
+        '</script> '
+    );
     /*
     oAuth2Client.signOut().then(function () {
     });
     oAuth2Client.disconnect();
     */
-    res.redirect('/');
+    //res.redirect('/');
 });
 
 const port = process.env.PORT || 5000
