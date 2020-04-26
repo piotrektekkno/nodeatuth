@@ -80,7 +80,7 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
-    
+    /*
     res.send(
         res.header("Content-Type", "application/json; charset=utf-8");
         '<script src="https://apis.google.com/js/platform.js?onload=fStart" async defer></script>' +
@@ -94,7 +94,7 @@ app.get('/logout',  function (req, res) {
             '}' +
         '</script> '
     );
-    
+    */
     /*
     oAuth2Client.signOut().then(function () {
     });
