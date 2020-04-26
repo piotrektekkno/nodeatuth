@@ -11,6 +11,7 @@ const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
 var authed = false;
+const oauth2;
 
 app.get('/', (req, res) => {
     if (!authed) {
@@ -28,7 +29,7 @@ app.get('/', (req, res) => {
        //res.send('Logged out');
     } else {
        
-       const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
+       oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinfo.v2.me.get(function(err, result){
            if(err){
                console.log('Błąd');
@@ -70,6 +71,7 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
+    /*
     res.send(
         '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
         '<script> ' +
@@ -77,16 +79,18 @@ app.get('/logout',  function (req, res) {
             'auth2.signOut().then(function () { ' +
             'console.log("User signed out."); ' +
             '});' +
-              
             'alert("ok"); ' +
         '</script> '
     );
+    */
     /*
     oAuth2Client.signOut().then(function () {
     });
     oAuth2Client.disconnect();
     */
-    //res.redirect('/');
+    //
+    oauth2.signOut();
+    res.redirect('/');
 });
 
 const port = process.env.PORT || 5000
