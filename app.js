@@ -70,7 +70,7 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
-    /*
+    
     res.send(
         '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
         '<script> ' +
@@ -81,7 +81,7 @@ app.get('/logout',  function (req, res) {
             'alert("ok"); ' +
         '</script> '
     );
-    */
+    
     /*
     oAuth2Client.signOut().then(function () {
     });
