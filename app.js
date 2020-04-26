@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-
+           res.set('title', 'Auth App');
            //res.send('<button type="button">Wyloguj</button>'); 
            res.send('Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
