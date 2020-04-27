@@ -38,8 +38,8 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-           //var oauth2Inst = oauth2.getAuthInstance();
-           oauth2.disconnect();
+          
+           
            var str  = '<br>';
            for(var a in appToken){
                str +=  a  + ' ' + appToken[a] + '<br>';
@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
                         '}' +
                     '</script> ' +
                     */
-                   str + 
+                  // str + 
                     'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
@@ -97,53 +97,16 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
-    /*
-    var pathAndToken = 'https://oauth2.googleapis.com/revoke?token='+ appToken.access_token;
-
-
-    request.post(pathAndToken, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    }, (error, resp, body) => {
-        if (error) {
-            console.error(error)
-        }
-    //console.log('statusCode: ${resp.statusCode}')
-    //console.log(body)
-        res.send(resp.statusCode + '<BR>' + body);
-        if(resp.statusCode == '200'){
-            authed = false;
-        }
-    });
     
-    */
-        oAuth2Client.revokeCredentials();
-        authed = false;
-        res.send('Wylogowano');
-    /*
     res.send(
-        res.header("Content-Type", "application/json; charset=utf-8");
-        '<script src="https://apis.google.com/js/platform.js?onload=fStart" async defer></script>' +
-        '<script> ' +
-            'function fStart(){ ' +
-            'var auth2 = gapi.auth2.getAuthInstance(); ' +
-            'auth2.signOut().then(function () { ' +
-            'console.log("User signed out."); ' +
-            '});' +
-            'alert("ok"); ' +
-            '}' +
-        '</script> '
+        '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
+        'function init() { ' +
+        '    gapi.load("auth2", function() { ' +
+        '       alert("init ok"); ' +
+        '    }); ' +
+        '} ' 
     );
-    */
-    /*
-    oAuth2Client.signOut().then(function () {
-    });
-    oAuth2Client.disconnect();
-    */
-    //
-    //oauth2.signOut();
-    //res.redirect('/');
+    
 });
 
 const port = process.env.PORT || 5000
