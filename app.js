@@ -62,7 +62,6 @@ app.get('/', (req, res) => {
                 '    alert("logout"); '+
                 '} '+
             '</script>';
-          
            
      
            res.send(
@@ -113,6 +112,7 @@ app.get('/logout',  function (req, res) {
             ' alert("ok"); ' +
             '} '+
 
+            
             'function logout() { '+
             '    var auth2 = gapi.auth2.getAuthInstance(); '+
             '    if (!auth2.isSignedIn.get()) { '+
