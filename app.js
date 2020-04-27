@@ -61,8 +61,7 @@ app.get('/', (req, res) => {
                 '    auth2.disconnect(); '+
                 '    alert("logout"); '+
                 '} '+
-            '</script>' +
-            '<button type="button" onClick="logout()">Wyloguj</button>' 
+            '</script>';
           
            
      
