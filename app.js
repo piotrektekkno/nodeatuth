@@ -62,6 +62,7 @@ app.get('/', (req, res) => {
                         '}' +
                     '</script> ' +
                     */
+                   str + 
                     'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
