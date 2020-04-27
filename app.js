@@ -108,9 +108,22 @@ app.get('/logout',  function (req, res) {
             '           scope: "profile"' +
                     '}); ' +
             '   }); ' +
+            ' alert("ok"); ' +
             '} '+
-            
-        '</script>'
+
+            'function logout() { '+
+            '    var auth2 = gapi.auth2.getAuthInstance(); '+
+            '    if (!auth2.isSignedIn.get()) { '+
+            '        alert("Not signed in, cannot disconnect"); '+
+            '        return; '+
+            '    } '+
+            '    auth2.disconnect(); '+
+            '    alert("logout"); '+
+            '} '+
+        '</script>' +
+        '<button type="button" onClick="logout()">Wyloguj</button>' 
+
+
     );
     
 });
