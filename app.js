@@ -97,7 +97,7 @@ app.get('/auth/google/callback', function (req, res) {
 
 app.get('/logout',  function (req, res) {
 
-    var pathAndToken = 'https://oauth2.googleapis.com/revoke?token='+appToken;
+    var pathAndToken = 'https://oauth2.googleapis.com/revoke?token='+appToken.access_token;
 
 
     request.post(pathAndToken, {
