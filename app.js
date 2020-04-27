@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
                     '<script> ' +
                         'function init(){' +
                             'gapi.auth2.init({' +
-                                'clientId:"' + CLIENT_ID  + '", \n'
+                                'clientId:"' + CLIENT_ID  + '", \n' +
                                 'scope: "https://www.googleapis.com/auth/userinfo.profile"' +
                             '});' +
                             'alert("ok")' +
