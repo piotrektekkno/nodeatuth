@@ -98,7 +98,7 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.get('/logout',  function (req, res) {
-    
+    authed = false;
     res.send(
         '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
         '<script>' +
@@ -124,7 +124,7 @@ app.get('/logout',  function (req, res) {
             '    alert("logout"); '+
             '} '+
         '</script>' +
-        '<button type="button" onClick="logout()">Wyloguj</button>' 
+        '<button type="button" onClick="logout()">Wyloguj</button>'
     );
     
 });
