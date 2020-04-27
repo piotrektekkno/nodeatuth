@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
                 'function init() { ' +
                 '   gapi.load("auth2", function() { ' +
                 '        auth2 = gapi.auth2.init({ ' +
-                '           client_id: "' + CLIENT_ID + '", ' +
+                '           client_id: "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com", ' +
                 '           scope: "profile"' +
                         '}); ' +
                 '   }); ' +
@@ -73,7 +73,7 @@ app.get('/', (req, res) => {
                            '<br>' +
                            '<button type="button" onClick="logout()">Wyloguj</button>'));
     });
-    
+
       //res.send('Logged in');
     }
 })
