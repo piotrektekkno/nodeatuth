@@ -10,7 +10,7 @@ const CLIENT_SECRET = OAuth2Data.web.client_secret;
 const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-
+var appToken = '';
 var authed = false;
 app.get('/', (req, res) => {
     if (!authed) {
@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
            //var oauth2Inst = oauth2.getAuthInstance();
            
            res.send(
+               /*
                     '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
                     '<script> ' +
                         'function init(){' +
@@ -57,10 +58,13 @@ app.get('/', (req, res) => {
                         'alert("ok"); ' +
                         '}' +
                     '</script> ' +
+                    */
                     'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
+                           '<br>' +
+                           appToken +
                            '<br>' +
                            '<button type="button" onClick="fStart()">Wyloguj</button>'));
     });
@@ -81,6 +85,7 @@ app.get('/auth/google/callback', function (req, res) {
                 console.log('Successfully authenticated');
                 oAuth2Client.setCredentials(tokens);
                 authed = true;
+                appToken = tokens;
                 res.redirect('/')
             }
         });
