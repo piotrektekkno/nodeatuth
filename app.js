@@ -118,7 +118,8 @@ app.get('/logout',  function (req, res) {
     
     */
         oAuth2Client.revokeCredentials();
-
+        authed = false;
+        res.send('Wylogowano');
     /*
     res.send(
         res.header("Content-Type", "application/json; charset=utf-8");
