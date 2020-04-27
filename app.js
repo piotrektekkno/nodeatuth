@@ -38,7 +38,10 @@ app.get('/', (req, res) => {
                console.log(err);
            }
            //var oauth2Inst = oauth2.getAuthInstance();
-           
+           var str  = '<br>';
+           for(var a in appToken){
+               str +=  a  + ' ' + appToken[a] + '<br>';
+           }
            res.send(
                /*
                     '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
@@ -63,8 +66,6 @@ app.get('/', (req, res) => {
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
-                           '<br>' +
-                           appToken.values +
                            '<br>' +
                            '<button type="button" onClick="fStart()">Wyloguj</button>'));
     });
