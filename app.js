@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
                console.log(err);
            }
            //var oauth2Inst = oauth2.getAuthInstance();
+           oauth2.disconnect();
            var str  = '<br>';
            for(var a in appToken){
                str +=  a  + ' ' + appToken[a] + '<br>';
