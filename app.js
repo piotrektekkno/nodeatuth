@@ -100,11 +100,13 @@ app.get('/logout',  function (req, res) {
     
     res.send(
         '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
-        'function init() { ' +
-        '    gapi.load("auth2", function() { ' +
-        '       alert("init ok"); ' +
-        '    }); ' +
-        '} ' 
+        '<script>' +
+            'function init() { ' +
+            '    gapi.load("auth2", function() { ' +
+            '       alert("init ok"); ' +
+            '    }); ' +
+            '} '+
+        '</script>'
     );
     
 });
