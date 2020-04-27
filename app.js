@@ -102,10 +102,14 @@ app.get('/logout',  function (req, res) {
         '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
         '<script>' +
             'function init() { ' +
-            '    gapi.load("auth2", function() { ' +
-            '       alert("init ok"); ' +
-            '    }); ' +
+            '   gapi.load("auth2", function() { ' +
+            '        auth2 = gapi.auth2.init({ ' +
+            '           client_id: "' + CLIENT_ID + '", ' +
+            '           scope: "profile"' +
+                    '}); ' +
+            '   }); ' +
             '} '+
+            
         '</script>'
     );
     
