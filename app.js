@@ -38,39 +38,42 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
+
+           var  logOutStrFunction =
+            '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
+            '<script>' +
+                'function init() { ' +
+                '   gapi.load("auth2", function() { ' +
+                '        auth2 = gapi.auth2.init({ ' +
+                '           client_id: "' + CLIENT_ID + '", ' +
+                '           scope: "profile"' +
+                        '}); ' +
+                '   }); ' +
+                ' alert("ok"); ' +
+                '} '+
+           
+                'function logout() { '+
+                '    var auth2 = gapi.auth2.getAuthInstance(); '+
+                '    if (!auth2.isSignedIn.get()) { '+
+                '        alert("Not signed in, cannot disconnect"); '+
+                '        return; '+
+                '    } '+
+                '    auth2.disconnect(); '+
+                '    alert("logout"); '+
+                '} '+
+            '</script>' +
+            '<button type="button" onClick="logout()">Wyloguj</button>' 
           
            
-           var str  = '<br>';
-           for(var a in appToken){
-               str +=  a  + ' ' + appToken[a] + '<br>';
-           }
+     
            res.send(
-               /*
-                    '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
-                    '<script> ' +
-                        'function init(){' +
-                            'gapi.auth2.init({' +
-                                'clientId:"' + CLIENT_ID  + '", \n' +
-                                'scope: "https://www.googleapis.com/auth/userinfo.profile"' +
-                            '});' +
-                            'alert("ok")' +
-                        '}' +
-                        'function fStart(){ ' +
-                        'var auth2 = gapi.auth2.getAuthInstance(); ' +
-                        'auth2.signOut().then(function () { ' +
-                        'console.log("User signed out."); ' +
-                        '});' +
-                        'alert("ok"); ' +
-                        '}' +
-                    '</script> ' +
-                    */
-                  // str + 
+                    logOutStrFunction +
                     'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
                            '<br>' +
-                           '<button type="button" onClick="fStart()">Wyloguj</button>'));
+                           '<button type="button" onClick="logout()">Wyloguj</button>'));
     });
        
       //res.send('Logged in');
@@ -122,8 +125,6 @@ app.get('/logout',  function (req, res) {
             '} '+
         '</script>' +
         '<button type="button" onClick="logout()">Wyloguj</button>' 
-
-
     );
     
 });
