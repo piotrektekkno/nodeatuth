@@ -105,7 +105,7 @@ app.get('/logout',  function (req, res) {
             'function init() { ' +
             '   gapi.load("auth2", function() { ' +
             '        auth2 = gapi.auth2.init({ ' +
-            '           client_id: "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com", ' +
+            "           client_id: '" + CLIENT_ID + "'," +
             "           scope: 'profile' " +
                     '}); ' +
             '   }); ' +
@@ -117,8 +117,9 @@ app.get('/logout',  function (req, res) {
             '    var auth2 = gapi.auth2.getAuthInstance(); '+
             '    if (!auth2.isSignedIn.get()) { '+
             '        alert("Not signed in, cannot disconnect"); '+
-            '        return; '+
+          //  '        //return; '+
             '    } '+
+            '    auth2.signOut(); '+
             '    auth2.disconnect(); '+
             '    alert("logout"); '+
             '} '+
