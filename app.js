@@ -105,14 +105,14 @@ app.get('/logout',  function (req, res) {
             'function init() { ' +
             '   gapi.load("auth2", function() { ' +
             '        auth2 = gapi.auth2.init({ ' +
-            '           client_id: "' + CLIENT_ID + '", ' +
-            '           scope: "profile"' +
+            "           client_id: '" + CLIENT_ID + "'," +
+            "           scope: 'profile' " +
                     '}); ' +
             '   }); ' +
             ' alert("ok"); ' +
             '} '+
 
-            
+
             'function logout() { '+
             '    var auth2 = gapi.auth2.getAuthInstance(); '+
             '    if (!auth2.isSignedIn.get()) { '+
