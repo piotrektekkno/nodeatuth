@@ -42,7 +42,13 @@ app.get('/', (req, res) => {
            res.send(
                     '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
                     '<script> ' +
-                        'function init(){alert("ok")}' +
+                        'function init(){' +
+                            'gapi.auth2.init({' +
+                                'clientId:' + CLIENT_ID  +
+                                'scope: "https://www.googleapis.com/auth/userinfo.profile"' +
+                            '});' +
+                            'alert("ok")' +
+                        '}' +
                         'function fStart(){ ' +
                         'var auth2 = gapi.auth2.getAuthInstance(); ' +
                         'auth2.signOut().then(function () { ' +
