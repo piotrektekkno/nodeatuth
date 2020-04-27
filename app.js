@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
                            result.data.picture,
                            '"height="23" width="23">',
                            '<br>' +
-                           appToken +
+                           appToken.values +
                            '<br>' +
                            '<button type="button" onClick="fStart()">Wyloguj</button>'));
     });
