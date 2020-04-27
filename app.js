@@ -110,8 +110,9 @@ app.get('/logout',  function (req, res) {
         }
     //console.log('statusCode: ${resp.statusCode}')
     //console.log(body)
-    });
     res.send(resp.statusCode);
+    });
+    
 
 
     /*
