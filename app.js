@@ -65,7 +65,7 @@ app.get('/', (req, res) => {
            
      
            res.send(
-                    logOutStrFunction +
+                   // logOutStrFunction +
                     'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
@@ -73,7 +73,7 @@ app.get('/', (req, res) => {
                            '<br>' +
                            '<button type="button" onClick="logout()">Wyloguj</button>'));
     });
-       
+    
       //res.send('Logged in');
     }
 })
