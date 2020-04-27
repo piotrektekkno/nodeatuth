@@ -108,10 +108,10 @@ app.get('/logout',  function (req, res) {
         if (error) {
             console.error(error)
         }
-    console.log(`statusCode: ${resp.statusCode}`)
-    console.log(body)
+    //console.log('statusCode: ${resp.statusCode}')
+    //console.log(body)
     });
-    res.send('OK');
+    res.send(resp.statusCode);
 
 
     /*
