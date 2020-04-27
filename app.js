@@ -101,8 +101,8 @@ app.get('/logout',  function (req, res) {
 
 
     request.post(pathAndToken, {
-        json: {
-            todo: 'Buy the milk'
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
     }, (error, resp, body) => {
         if (error) {
@@ -110,7 +110,7 @@ app.get('/logout',  function (req, res) {
         }
     //console.log('statusCode: ${resp.statusCode}')
     //console.log(body)
-    res.send(resp.statusCode);
+        res.send(resp.statusCode);
     });
     
 
