@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 const express = require('express')
-const https = require('https')
+const request = require('request')
 const OAuth2Data = require('./gkeys.json')
 
 const app = express();
@@ -97,34 +97,22 @@ app.get('/auth/google/callback', function (req, res) {
 
 app.get('/logout',  function (req, res) {
 
-    var pathAndToken = '/revoke?token='+appToken;
+    var pathAndToken = 'https://oauth2.googleapis.com/revoke?token='+appToken;
 
-    const options = {
-        hostname: 'oauth2.googleapis.com/',
-        port: 80,
-        path: pathAndToken,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-         // 'Content-Length': data.length
+
+    request.post(pathAndToken, {
+        json: {
+            todo: 'Buy the milk'
         }
-    }
+    }, (error, resp, body) => {
+        if (error) {
+            console.error(error)
+        }
+    console.log(`statusCode: ${resp.statusCode}`)
+    console.log(body)
+    });
 
-    const reqn = https.request(options, res => {
-        console.log('statusCode: ${res.statusCode}')
-      
-        res.on('data', d => {
-            res.send(d);
-        })
-      })
-      
-      reqn.on('error', error => {
-        res.send(error);
-        console.error(error)
-      })
-      
-      //req.write(data)
-      reqn.end();
+
 
     /*
     res.send(

@@ -16,7 +16,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "googleapis": "^49.0.0",
-    "https": "^1.0.0"
+    "https": "^1.0.0",
+    "request": "^2.88.2"
   },
   "engines": {
     "node": "12.16.2"
