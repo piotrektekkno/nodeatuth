@@ -41,15 +41,17 @@ app.get('/', (req, res) => {
                console.log(err);
            }
 
-    
-          
+
+           
+     
            res.send(
                    // logOutStrFunction +
-                    'Logged P9 in: <BR> '.
+                    'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
-                           '<br>'));
+                           '<br>' +
+                           '<button type="button" onClick="logout()">Wyloguj</button>'));
     });
 
       //res.send('Logged in');
