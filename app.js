@@ -41,21 +41,39 @@ app.get('/', (req, res) => {
                console.log(err);
            }
 
-           client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-            if (err) throw err;
-            for (let row of res.rows) {
-              console.log(JSON.stringify(row));
-            }
-            client.end();
-          });
-
+           var  logOutStrFunction =
+            '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
+            '<script>' +
+                'function init() { ' +
+                '   gapi.load("auth2", function() { ' +
+                '        auth2 = gapi.auth2.init({ ' +
+                '           client_id: "721724668570-nbkv1cfusk7kk4eni4pjvepaus73b13t.apps.googleusercontent.com", ' +
+                '           scope: "profile"' +
+                        '}); ' +
+                '   }); ' +
+                ' alert("ok"); ' +
+                '} '+
+           
+                'function logout() { '+
+                '    var auth2 = gapi.auth2.getAuthInstance(); '+
+                '    if (!auth2.isSignedIn.get()) { '+
+                '        alert("Not signed in, cannot disconnect"); '+
+                '        return; '+
+                '    } '+
+                '    auth2.disconnect(); '+
+                '    alert("logout"); '+
+                '} '+
+            '</script>';
+           
+     
            res.send(
                    // logOutStrFunction +
-                    'Logged P9 in: <BR> '.
+                    'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
-                           '<br>'));
+                           '<br>' +
+                           '<button type="button" onClick="logout()">Wyloguj</button>'));
     });
 
       //res.send('Logged in');
