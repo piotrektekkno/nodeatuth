@@ -48,10 +48,10 @@ app.get('/', (req, res) => {
             }
             client.end();
           });
-          
+
            res.send(
                    // logOutStrFunction +
-                    'Logged in: <BR> '.
+                    'Logged P9 in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
                            '"height="23" width="23">',
