@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "googleapis": "^49.0.0",
     "https": "^1.0.0",
+    "pg": "^8.0.3",
     "request": "^2.88.2"
   },
   "engines": {
