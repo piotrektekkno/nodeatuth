@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
         res.redirect(url);
     
        //res.send('Logged out');
+       var str =' ';
     } else {
        
        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
@@ -50,6 +51,7 @@ app.get('/', (req, res) => {
            client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
+                str += JSONs.sringify(row);
               console.log(JSON.stringify(row));
             }
             client.end();
@@ -57,7 +59,7 @@ app.get('/', (req, res) => {
            
      
            res.send(
-                   // logOutStrFunction +
+                    str +
                     'Logged in: <BR> '.
                     concat(loggedUser, ' <img src="', 
                            result.data.picture,
