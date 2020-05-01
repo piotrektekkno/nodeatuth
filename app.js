@@ -35,9 +35,9 @@ app.get('/', (req, res) => {
         res.redirect(url);
     
        //res.send('Logged out');
-       var str =' ';
+      
     } else {
-       
+        var str =' ';
        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinfo.v2.me.get(function(err, result){
            if(err){
@@ -48,14 +48,17 @@ app.get('/', (req, res) => {
                console.log(err);
            }
 
-           client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-            if (err) throw err;
-            for (let row of res.rows) {
-                str += JSON.stringify(row);
-              console.log(JSON.stringify(row));
-            }
-            client.end();
-          });
+           const getUsers = (request, response) => {
+            console.log('Pobieram dane ...');    
+            client.query('SELECT * FROM public."Users"', (error, res) => { 
+                if (error) { throw error }      
+                console.log('Dostałem ...');      
+                for (let row of res.rows) {         
+                     console.log(JSON.tsringify(row));
+                     str += JSON.tsringify(row);      
+                }    
+            })  
+        } 
            
      
            res.send(
