@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
            client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
-                str += JSONs.sringify(row);
+                str += JSON.sringify(row);
               console.log(JSON.stringify(row));
             }
             client.end();
@@ -59,14 +59,14 @@ app.get('/', (req, res) => {
            
      
            res.send(
-                    str +
-                    'Logged in: <BR> '.
-                    concat(loggedUser, ' <img src="', 
-                           result.data.picture,
-                           '"height="23" width="23">',
-                           '<br>' +
-                           '<button type="button" onClick="logout()">Wyloguj</button>'));
-    });
+            str +
+            'Logged in: <BR> '.
+            concat(loggedUser, ' <img src="', 
+                    result.data.picture,
+                    '"height="23" width="23">',
+                    '<br>' +
+                    '<button type="button" onClick="logout()">Wyloguj</button>'));
+            });
 
       //res.send('Logged in');
     }
