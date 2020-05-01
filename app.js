@@ -55,7 +55,8 @@ app.get('/', (req, res) => {
                 console.log('Dostałem ...');      
                 for (let row of res.rows) {         
                      console.log(JSON.tsringify(row));
-                     str += JSON.tsringify(row);      
+                     str += JSON.tsringify(row); 
+                     res.send(JSON.tsringify(row));   
                 }    
             })  
         } 
