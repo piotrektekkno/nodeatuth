@@ -21,7 +21,7 @@ client.connect();
 const getUsers = (request, response) => {
     res.send('abc');
      console.log('Pobieram dane ...');    
-     client.query('SELECT * FROM public."Users"', (error, res) => { 
+     client.query('SELECTx * FROM public."Users"', (error, res) => { 
      if (error) { throw error }      
      console.log('Dostałem ...');      
      for (let row of res.rows) {         
