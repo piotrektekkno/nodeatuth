@@ -16,7 +16,22 @@ const client = new Client({
     ssl: true
   });
 
-  client.connect();
+  var str =' ';
+
+client.connect();
+
+const getUsers = (request, response) => {
+    console.log('Pobieram dane ...');    
+    client.query('SELECT * FROM public."Users"', (error, res) => { 
+        if (error) { throw error }      
+        console.log('Dostałem ...');      
+        for (let row of res.rows) {         
+             console.log(JSON.tsringify(row));
+             str += JSON.tsringify(row); 
+             res.send(JSON.tsringify(row));   
+        }    
+    })  
+} 
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 var appToken = '';
@@ -37,7 +52,7 @@ app.get('/', (req, res) => {
        //res.send('Logged out');
       
     } else {
-        var str =' ';
+        
        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
        oauth2.userinfo.v2.me.get(function(err, result){
            if(err){
@@ -48,18 +63,7 @@ app.get('/', (req, res) => {
                console.log(err);
            }
 
-           const getUsers = (request, response) => {
-            console.log('Pobieram dane ...');    
-            client.query('SELECT * FROM public."Users"', (error, res) => { 
-                if (error) { throw error }      
-                console.log('Dostałem ...');      
-                for (let row of res.rows) {         
-                     console.log(JSON.tsringify(row));
-                     str += JSON.tsringify(row); 
-                     res.send(JSON.tsringify(row));   
-                }    
-            })  
-        } 
+           
            
      
            res.send(
