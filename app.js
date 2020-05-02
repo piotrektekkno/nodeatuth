@@ -13,7 +13,7 @@ const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: true
+    ssl: true, 
   });
 
 client.connect();
@@ -58,20 +58,20 @@ app.get('/', (req, res) => {
                      str += JSON.tsringify(row); 
                      res.send(JSON.tsringify(row));   
                 } 
-                res.send(
-                    str +
-                    'Logged in: <BR> '.
-                    concat(loggedUser, ' <img src="', 
-                            result.data.picture,
-                            '"height="23" width="23">',
-                            '<br>' +
-                            '<button type="button" onClick="logout()">Wyloguj</button>'));  
+                    
                 
                 })  
             } 
            
      
-       
+           res.send(
+            str +
+            'Logged in: <BR> '.
+            concat(loggedUser, ' <img src="', 
+                    result.data.picture,
+                    '"height="23" width="23">',
+                    '<br>' +
+                    '<button type="button" onClick="logout()">Wyloguj</button>'));
             });
 
       //res.send('Logged in');
