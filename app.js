@@ -18,6 +18,22 @@ const client = new Client({
 
 client.connect();
 
+const getUsers = (request, response) => {
+    res.send('abc');
+     console.log('Pobieram dane ...');    
+     client.query('SELECT * FROM public."Users"', (error, res) => { 
+     if (error) { throw error }      
+     console.log('Dostałem ...');      
+     for (let row of res.rows) {         
+          console.log(JSON.tsringify(row));
+          str += JSON.tsringify(row); 
+          res.send(JSON.tsringify(row));   
+     } 
+         
+     
+     })  
+ } 
+
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 var appToken = '';
 var authed = false;
@@ -48,21 +64,7 @@ app.get('/', (req, res) => {
                console.log(err);
            }
 
-           const getUsers = (request, response) => {
-               res.send('abc');
-                console.log('Pobieram dane ...');    
-                client.query('SELECT * FROM public."Users"', (error, res) => { 
-                if (error) { throw error }      
-                console.log('Dostałem ...');      
-                for (let row of res.rows) {         
-                     console.log(JSON.tsringify(row));
-                     str += JSON.tsringify(row); 
-                     res.send(JSON.tsringify(row));   
-                } 
-                    
-                
-                })  
-            } 
+          
            
      
            res.send(
