@@ -65,11 +65,11 @@ app.get('/', (req, res) => {
         var sRows =' ';
         var userExists = 0;
 
-        client.query('SELECT Count(1) isUser FROM public."Users" WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+        client.query('SELECT Count(1) isuser FROM public."Users" WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
             if (err) throw err;
             for (let row of r.rows) {
               console.log(JSON.stringify(row));
-              userExists = parseInt(JSON.parse(JSON.stringify(row)),10);
+              userExists = parseInt(JSON.parse(JSON.stringify(row)).isuser,10);
             }
         
 
