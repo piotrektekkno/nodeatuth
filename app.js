@@ -79,11 +79,12 @@ app.get('/', (req, res) => {
                 if (err) throw err;
             });
         } else {
-            console.log(loggedUser + ' nie istnieje dodanie użutkowanika' );
+            console.log(loggedUser + ' nie istnieje dodanie użytkowanika' );
+            client.query('INSERT INTO public."Users" (NAME) VALUES  (\'' + loggedUser + '\')' , (err, r) => {
+                if (err) throw err;
+            });
         }
-    
-
-        
+            
         client.query('SELECT * FROM public."Users"', (err, r) => {
           if (err) throw err;
           for (let row of r.rows) {
