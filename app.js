@@ -20,6 +20,17 @@ const client = new Client({
     connectionString: process.env.DATABASE_URL,
 });
 
+var sTable  = 
+    ' <table style="width:100%"> ' +
+    ' <tr> ' +
+    '   <th>Id</th> ' +
+    '   <th>Name</th> ' +
+    '   <th>Joined</th> ' +
+    '   <th>Last visit</th> ' +
+    '   <th>Counter</th> ' +
+    ' </tr> ';
+    client.connect();
+
 app.get('/', (req, res) => {
     if (!authed) {
         
@@ -46,25 +57,30 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-           const client = new Client({
-            connectionString: process.env.DATABASE_URL,
-          });
-          
-      client.connect();
-      
-      client.query('SELECT * FROM public."Users"', (err, res) => {
-        if (err) throw err;
-        for (let row of res.rows) {
-          console.log(JSON.stringify(row));
-          var a = JSON.parse(JSON.stringify(row));
-          console.log(a.name);
-        }
-        client.end();
-      });
+        var sRows =' ';
+        client.connect();
+        client.query('SELECT * FROM public."Users"', (err, res) => {
+          if (err) throw err;
+          for (let row of res.rows) {
+            console.log(JSON.stringify(row));
+            var a = JSON.parse(JSON.stringify(row));
+            console.log(a.name);
+            sRows +=
+                '<tr>' +
+                '<td> ' + a.id + '</td>' +
+                '<td> ' + a.name + '</td>' +
+                '<td> ' + a.joined + '</td>' +
+                '<td> ' + a.lastvisit + '</td>' +
+                '<td> ' + a.counter + '</td>' +
+                '</tr>'
+
+          }
+          client.end();
+        });
 
           console.log('przed ...');    
            res.send(
-            str +
+            sTable + sRows + '</table>' +
             'Logged in: <BR> '.
             concat(loggedUser, ' <img src="', 
                     result.data.picture,
