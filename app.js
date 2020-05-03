@@ -13,7 +13,6 @@ const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: true
   });
 
 client.connect();
