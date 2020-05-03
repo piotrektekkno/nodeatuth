@@ -15,6 +15,11 @@ const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 var appToken = '';
 var authed = false;
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+});
+
 app.get('/', (req, res) => {
     if (!authed) {
         
@@ -110,9 +115,7 @@ app.get('/logout',  function (req, res) {
 
 app.get('/db',  function (req, res) {
 
-    const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-      });
+   
       
       client.connect();
       
