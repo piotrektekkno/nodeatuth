@@ -47,7 +47,19 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
+     
+       
+        });
 
+            res.send(
+                str +
+                'Logged in: <BR> '.
+                concat(loggedUser, ' <img src="', 
+                        result.data.picture,
+                        '"height="23" width="23">',
+                        '<br>' +
+                        '<button type="button" onClick="logout()">Wyloguj</button>'));
+            
            const getUsers = (request, response) => {
             console.log('Pobieram dane ...');    
                 client.query('SELECT * FROM public."Users"', (error, res) => { 
@@ -61,17 +73,6 @@ app.get('/', (req, res) => {
                 
                 })  
             } 
-           
-     
-           res.send(
-            str +
-            'Logged in: <BR> '.
-            concat(loggedUser, ' <img src="', 
-                    result.data.picture,
-                    '"height="23" width="23">',
-                    '<br>' +
-                    '<button type="button" onClick="logout()">Wyloguj</button>'));
-            });
 
       //res.send('Logged in');
     }
