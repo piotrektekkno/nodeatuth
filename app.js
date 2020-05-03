@@ -75,10 +75,7 @@ app.get('/', (req, res) => {
                 '</tr>'
           }
           client.end();
-        });
-
-          console.log('przed ...');    
-           res.send(
+          res.send(
             sTable + sRows + '</table>' +
             'Logged in: <BR> '.
             concat(loggedUser, ' <img src="', 
@@ -87,6 +84,10 @@ app.get('/', (req, res) => {
                     '<br>' +
                     '<button type="button" onClick="logout()">Wyloguj</button>'));
             });
+        });
+
+          console.log('przed ...');    
+
     }
 })
 
