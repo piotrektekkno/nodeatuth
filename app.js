@@ -74,7 +74,7 @@ app.get('/', (req, res) => {
                 '<td> ' + a.counter + '</td>' +
                 '</tr>'
           }
-          client.end();
+          //client.end();
           res.send(
             
             'Logged in: <BR> '.
