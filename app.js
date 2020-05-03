@@ -72,14 +72,16 @@ app.get('/', (req, res) => {
                      userExists = parseInt(JSON.parse(JSON.stringify(row)).isuser,10);
                 }
                 //updateUser pozwala tylko na jeden update przy logowaniu
-                if(userExists && updateUser){
-                    updateUser = false;
-                    console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
-                    client.query('UPDATE public."Users" ' +
-                                 'SET Counter = Counter + 1, LastVisit = current_timestamp  ' +
-                                 ' WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
-                        if (err) throw err;
-                    });
+                if(userExists){
+                    if(updateUser){
+                        updateUser = false;
+                        console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
+                        client.query('UPDATE public."Users" ' +
+                                    'SET Counter = Counter + 1, LastVisit = current_timestamp  ' +
+                                    ' WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+                            if (err) throw err;
+                        });
+                    }
                 } else {
                     console.log(loggedUser + ' nie istnieje dodanie użytkowanika' );
                     client.query('INSERT INTO public."Users" (NAME) VALUES  (\'' + loggedUser + '\')' , (err, r) => {
