@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
                 '</tr>'
 
           }
-          client.end();
+          //client.end();
         });
 
           console.log('przed ...');    
