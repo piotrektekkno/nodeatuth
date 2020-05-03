@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
           });
         
         client.connect();
-        
+        console.log('przed ...');    
            const getUsers = (request, response) => {
             console.log('Pobieram dane ...');    
                 client.query('SELECT * FROM public."Users"', (error, res) => { 
@@ -60,6 +60,7 @@ app.get('/', (req, res) => {
                 
                 })  
             }
+            console.log('PO ...');    
      
            res.send(
             str +
