@@ -21,7 +21,7 @@ const client = new Client({
 });
 
 var sTable  = 
-    ' <table style="width:100%"> ' +
+    ' <table style="width:100%" border="2"> ' +
     ' <tr> ' +
     '   <th>Id</th> ' +
     '   <th>Name</th> ' +
@@ -76,13 +76,15 @@ app.get('/', (req, res) => {
           }
           client.end();
           res.send(
-            sTable + sRows + '</table>' +
+            
             'Logged in: <BR> '.
             concat(loggedUser, ' <img src="', 
                     result.data.picture,
                     '"height="23" width="23">',
                     '<br>' +
-                    '<button type="button" onClick="logout()">Wyloguj</button>'));
+                    '<button type="button" onClick="logout()">Wyloguj</button>') +
+                    sTable + sRows + '</table>' 
+                    );
             });
         });
 
