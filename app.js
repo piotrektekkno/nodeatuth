@@ -20,7 +20,7 @@ const client = new Client({
     connectionString: process.env.DATABASE_URL,
 });
 client.connect();
-
+var updateUser = false;
 var sTable  = 
     ' <table style="width:100%" border="2"> ' +
     ' <tr> ' +
@@ -71,8 +71,9 @@ app.get('/', (req, res) => {
                     console.log(JSON.stringify(row));
                      userExists = parseInt(JSON.parse(JSON.stringify(row)).isuser,10);
                 }
-        
-                if(userExists){
+                //updateUser pozwala tylko na jeden update przy logowaniu
+                if(userExists && updateUser){
+                    updateUser = false;
                     console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
                     client.query('UPDATE public."Users" ' +
                                  'SET Counter = Counter + 1, LastVisit = current_timestamp  ' +
@@ -135,6 +136,7 @@ app.get('/auth/google/callback', function (req, res) {
                 oAuth2Client.setCredentials(tokens);
                 authed = true;
                 appToken = tokens;
+                updateUser = true;
                 res.redirect('/')
             }
         });
