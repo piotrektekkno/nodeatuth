@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
         if (err) throw err;
         for (let row of res.rows) {
           console.log(JSON.stringify(row));
-          var a = JSON.stringify(row).parse();
+          var a = JSON.parse(JSON.stringify(row));
           console.log(a.name);
         }
         client.end();
