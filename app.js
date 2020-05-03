@@ -49,12 +49,12 @@ app.get('/', (req, res) => {
       
     } else {
         var str =' ';
-       const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
-       oauth2.userinfo.v2.me.get(function(err, result){
-           if(err){
-               console.log('Błąd');
-               console.log(err);
-           } else {
+        const oauth2 = google.oauth2({auth: oAuth2Client, version: 'v2' });
+        oauth2.userinfo.v2.me.get(function(err, result){
+            if(err){
+                console.log('Błąd');
+                console.log(err);
+            } else {
                loggedUser = result.data.name;
                console.log(err);
            }
@@ -62,58 +62,60 @@ app.get('/', (req, res) => {
         // Nowy użytkownik czy zalogowany ?
 
         
-        var sRows =' ';
-        var userExists = 0;
+            var sRows =' ';
+            var userExists = 0;
 
-        client.query('SELECT Count(1) isuser FROM public."Users" WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
-            if (err) throw err;
-            for (let row of r.rows) {
-              console.log(JSON.stringify(row));
-              userExists = parseInt(JSON.parse(JSON.stringify(row)).isuser,10);
-            }
+            client.query('SELECT Count(1) isuser FROM public."Users" WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+                if (err) throw err;
+                for (let row of r.rows) {
+                    console.log(JSON.stringify(row));
+                     userExists = parseInt(JSON.parse(JSON.stringify(row)).isuser,10);
+                }
         
+                if(userExists){
+                    console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
+                    client.query('UPDATE public."Users" SET Counter = Counter + 1 WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+                        if (err) throw err;
+                    });
+                } else {
+                    console.log(loggedUser + ' nie istnieje dodanie użytkowanika' );
+                    client.query('INSERT INTO public."Users" (NAME) VALUES  (\'' + loggedUser + '\')' , (err, r) => {
+                        if (err) throw err;
+                    });
+                 }
 
-        if(userExists){
-            console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
-            client.query('UPDATE public."Users" SET Counter = Counter + 1 WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
-                if (err) throw err;
-            });
-        } else {
-            console.log(loggedUser + ' nie istnieje dodanie użytkowanika' );
-            client.query('INSERT INTO public."Users" (NAME) VALUES  (\'' + loggedUser + '\')' , (err, r) => {
-                if (err) throw err;
-            });
-        }
+                 client.query('SELECT * FROM public."Users"', (err, r) => {
+                    if (err) throw err;
+                    for (let row of r.rows) {
+                      console.log(JSON.stringify(row));
+                      var a = JSON.parse(JSON.stringify(row));
+                      console.log(a.name);
+                      sRows +=
+                          '<tr>' +
+                          '<td> ' + a.id + '</td>' +
+                          '<td> ' + a.name + '</td>' +
+                          '<td> ' + a.joined + '</td>' +
+                          '<td> ' + a.lastvisit + '</td>' +
+                          '<td> ' + a.counter + '</td>' +
+                          '</tr>'
+                    }
+                    //client.end();
+                    res.send(
+                      
+                      'Logged in: <BR> '.
+                      concat(loggedUser, ' <img src="', 
+                              result.data.picture,
+                              '"height="23" width="23">',
+                              '<br>' +
+                              '<button type="button" onClick="logout()">Wyloguj</button>') +
+                              sTable + sRows + '</table>');
+                      });
+
+        
 
     });
             
-        client.query('SELECT * FROM public."Users"', (err, r) => {
-          if (err) throw err;
-          for (let row of r.rows) {
-            console.log(JSON.stringify(row));
-            var a = JSON.parse(JSON.stringify(row));
-            console.log(a.name);
-            sRows +=
-                '<tr>' +
-                '<td> ' + a.id + '</td>' +
-                '<td> ' + a.name + '</td>' +
-                '<td> ' + a.joined + '</td>' +
-                '<td> ' + a.lastvisit + '</td>' +
-                '<td> ' + a.counter + '</td>' +
-                '</tr>'
-          }
-          //client.end();
-          res.send(
-            
-            'Logged in: <BR> '.
-            concat(loggedUser, ' <img src="', 
-                    result.data.picture,
-                    '"height="23" width="23">',
-                    '<br>' +
-                    '<button type="button" onClick="logout()">Wyloguj</button>') +
-                    sTable + sRows + '</table>' 
-                    );
-            });
+
         });
     }
 })
