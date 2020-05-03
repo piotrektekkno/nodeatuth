@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
 
         if(userExists){
             console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
-            client.query('UPDATE public."Users" SET COUNT = COUNT + 1 WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+            client.query('UPDATE public."Users" SET Counter = Counter + 1 WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
                 if (err) throw err;
             });
         } else {
