@@ -71,20 +71,22 @@ app.get('/', (req, res) => {
               console.log(JSON.stringify(row));
               userExists = parseInt(JSON.parse(JSON.stringify(row)).isuser,10);
             }
+
+            if(userExists){
+                console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
+                client.query('UPDATE public."Users" SET Counter = Counter + 1 WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+                    if (err) throw err;
+                });
+            } else {
+                console.log(loggedUser + ' nie istnieje dodanie użytkowanika' );
+                client.query('INSERT INTO public."Users" (NAME) VALUES  (\'' + loggedUser + '\')' , (err, r) => {
+                    if (err) throw err;
+                });
+            }
         
         });
 
-        if(userExists){
-            console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
-            client.query('UPDATE public."Users" SET Counter = Counter + 1 WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
-                if (err) throw err;
-            });
-        } else {
-            console.log(loggedUser + ' nie istnieje dodanie użytkowanika' );
-            client.query('INSERT INTO public."Users" (NAME) VALUES  (\'' + loggedUser + '\')' , (err, r) => {
-                if (err) throw err;
-            });
-        }
+  
 
             
         client.query('SELECT * FROM public."Users"', (err, r) => {
