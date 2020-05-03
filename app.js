@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-        var sRows =' ';
+        var sRows ='n';
         client.connect();
         client.query('SELECT * FROM public."Users"', (err, res) => {
           if (err) throw err;
