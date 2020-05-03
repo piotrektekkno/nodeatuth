@@ -11,11 +11,6 @@ const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
 const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
 
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-  });
-
-client.connect();
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 var appToken = '';
@@ -46,7 +41,12 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-
+           const client = new Client({
+            connectionString: process.env.DATABASE_URL,
+          });
+        
+        client.connect();
+        
            const getUsers = (request, response) => {
             console.log('Pobieram dane ...');    
                 client.query('SELECT * FROM public."Users"', (error, res) => { 
