@@ -58,7 +58,22 @@ app.get('/', (req, res) => {
                loggedUser = result.data.name;
                console.log(err);
            }
-        var sRows ='n';
+        
+        // Nowy użytkownik czy zalogowany ?
+
+        
+        var sRows =' ';
+        var userExists = 0;
+
+        client.query('SELECT Count(1) isUser FROM public."Users" WHERE Name = \'' + loggedUser + '\'' , (err, r) => {
+            if (err) throw err;
+            for (let row of r.rows) {
+              console.log(JSON.stringify(row));
+            }
+            
+        });
+        
+
         
         client.query('SELECT * FROM public."Users"', (err, r) => {
           if (err) throw err;
@@ -88,9 +103,6 @@ app.get('/', (req, res) => {
                     );
             });
         });
-
-          console.log('przed ...');    
-
     }
 })
 
@@ -111,44 +123,6 @@ app.get('/auth/google/callback', function (req, res) {
             }
         });
     }
-});
-
-app.get('/logout',  function (req, res) {
-    authed = false;
-    res.send(
-        '<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>' +
-        '<script>' +
-            'function init() { ' +
-            '   gapi.load("auth2", function() { ' +
-            '        auth2 = gapi.auth2.init({ ' +
-            "           client_id: '" + CLIENT_ID + "'," +
-            "           scope: 'profile' " +
-                    '}); ' +
-            '   }); ' +
-            ' alert("ok"); ' +
-            '} '+
-
-
-            'function logout() { '+
-            '    var auth2 = gapi.auth2.getAuthInstance(); '+
-            '    if (!auth2.isSignedIn.get()) { '+
-            '        alert("Not signed in, cannot disconnect"); '+
-          //  '        //return; '+
-            '    } '+
-            '    auth2.signOut(); '+
-            '    auth2.disconnect(); '+
-            '    alert("logout"); '+
-            '} '+
-        '</script>' +
-        '<button type="button" onClick="logout()">Wyloguj</button>'
-    );
-    
-});
-
-app.get('/db',  function (req, res) {
-
-   
-      
 });
 
 const port = process.env.PORT || 5000
