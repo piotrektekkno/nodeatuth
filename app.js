@@ -44,9 +44,9 @@ app.get('/', (req, res) => {
            const client = new Client({
             connectionString: process.env.DATABASE_URL,
           });
-        
+          console.log('przed ...');    
         client.connect();
-        console.log('przed ...');    
+       
            const getUsers = (request, response) => {
             console.log('Pobieram dane ...');    
                 client.query('SELECT * FROM public."Users"', (error, res) => { 
