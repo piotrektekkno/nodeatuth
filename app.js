@@ -45,23 +45,6 @@ app.get('/', (req, res) => {
             connectionString: process.env.DATABASE_URL,
           });
           console.log('przed ...');    
-        client.connect();
-       
-           const getUsers = (request, response) => {
-            console.log('Pobieram dane ...');    
-                client.query('SELECT * FROM public."Users"', (error, res) => { 
-                if (error) { throw error }      
-                console.log('Dostałem ...');      
-                for (let row of res.rows) {         
-                     console.log(JSON.tsringify(row));
-                     str += JSON.tsringify(row); 
-                     res.send(JSON.tsringify(row));   
-                }  
-                
-                })  
-            }
-            console.log('PO ...');    
-     
            res.send(
             str +
             'Logged in: <BR> '.
@@ -71,12 +54,6 @@ app.get('/', (req, res) => {
                     '<br>' +
                     '<button type="button" onClick="logout()">Wyloguj</button>'));
             });
-
-
-            
-  
-
-      //res.send('Logged in');
     }
 })
 
