@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
               console.log(JSON.stringify(row));
               userExists = parseInt(JSON.parse(JSON.stringify(row)),10);
             }
-        });
+        
 
         if(userExists){
             console.log(loggedUser + ' został stworzony już isnieje dodanie 1 do kolumny Count' );
@@ -84,6 +84,8 @@ app.get('/', (req, res) => {
                 if (err) throw err;
             });
         }
+
+    });
             
         client.query('SELECT * FROM public."Users"', (err, r) => {
           if (err) throw err;
