@@ -19,6 +19,7 @@ var authed = false;
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
 });
+client.connect();
 
 var sTable  = 
     ' <table style="width:100%" border="2"> ' +
@@ -58,7 +59,7 @@ app.get('/', (req, res) => {
                console.log(err);
            }
         var sRows ='n';
-        client.connect();
+        
         client.query('SELECT * FROM public."Users"', (err, r) => {
           if (err) throw err;
           for (let row of r.rows) {
