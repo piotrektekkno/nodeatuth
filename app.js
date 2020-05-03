@@ -59,9 +59,9 @@ app.get('/', (req, res) => {
            }
         var sRows ='n';
         client.connect();
-        client.query('SELECT * FROM public."Users"', (err, res) => {
+        client.query('SELECT * FROM public."Users"', (err, r) => {
           if (err) throw err;
-          for (let row of res.rows) {
+          for (let row of r.rows) {
             console.log(JSON.stringify(row));
             var a = JSON.parse(JSON.stringify(row));
             console.log(a.name);
@@ -73,9 +73,8 @@ app.get('/', (req, res) => {
                 '<td> ' + a.lastvisit + '</td>' +
                 '<td> ' + a.counter + '</td>' +
                 '</tr>'
-
           }
-          //client.end();
+          client.end();
         });
 
           console.log('przed ...');    
