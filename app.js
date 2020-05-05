@@ -30,7 +30,7 @@ var sTable  =
     '   <th>Last visit</th> ' +
     '   <th>Counter</th> ' +
     ' </tr> ';
-    client.connect();
+    //client.connect();
 
 app.get('/', (req, res) => {
     if (!authed) {
